@@ -5,3 +5,4 @@ django==2.2.22
 jinja2==2.10.1
 Werkzeug==0.14.1
 pycryptodome
+markdown==2.6.11
