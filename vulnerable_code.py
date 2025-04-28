@@ -1,13 +1,14 @@
-import subprocess
-import os 
-import pickle 
+import os
+from flask import Flask, request
+app = Flask(__name__)
 
-# 🚨 HIGH severity real-world vulnerability: Command Injection
-def run_command(user_input):
-    # Bad: directly interpolating untrusted input into a shell command
-    cmd = "echo " + user_input
-    subprocess.call(cmd, shell=True)
+# curl -X GET "http://localhost:5000/tainted7/touch%20HELLO"
+@app.route("/tainted7/<something>")
+def test_sources_7(something):
+    
+    os.system(request.remote_addr) 
+
+    return "foo"
 
 if __name__ == "__main__":
-    user_input = input("Enter your command: ")
-    run_command(user_input)
+	app.run(debug=True) 
