@@ -1,16 +1,16 @@
-# unsafe_yaml_loader.py
+# vulnerable_code.py
 
-import yaml
+import pickle
+import os
 
-def unsafe_load_user_input():
-    print("Paste YAML content:")
-    user_input = input()
+# Hardcoded AWS Secrets (triggers Secret Scanner)
+AWS_ACCESS_KEY_ID = "AKIAEXAMPLE12345678"
+AWS_SECRET_ACCESS_KEY = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
 
-    # ❌ Vulnerable: Using unsafe yaml.load() instead of safe_load()
-    data = yaml.load(user_input, Loader=yaml.Loader)
-
-    print("Parsed data:")
-    print(data)
+def unsafe_load(user_input):
+    # Remote Code Execution via pickle (triggers Code Scanner)
+    return pickle.loads(user_input)
 
 if __name__ == "__main__":
-    unsafe_load_user_input()
+    payload = pickle.dumps(os.system)
+    unsafe_load(payload)
