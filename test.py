@@ -1,11 +1,14 @@
-import subprocess
-import pickle
-subprocess.call('ls', shell=True)  # <- Dangerous: CodeQL flags "Command Injection Risk"
+import os
+from flask import Flask, request
+app = Flask(__name__)
 
-API_KEY = "sk_test_51MabcDEF1234567890exampleSecretKey"
+# curl -X GET "http://localhost:5000/tainted7/touch%20HELLO"
+@app.route("/tainted7/<something>")
+def test_sources_7(something):
+    
+    os.system(request.remote_addr) 
 
-# Insecure Deserialization - Don't use this in production
-data = b"cos\nsystem\n(S'ls'\ntR."
-# Insecurely loading the data
-loaded_data = pickle.loads(data)
-print(loaded_data)
+    return "foo"
+
+if __name__ == "__main__":
+	app.run(debug=True) 
