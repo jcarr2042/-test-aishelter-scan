@@ -1,14 +1,16 @@
-import os
-from flask import Flask, request
-app = Flask(__name__)
+# unsafe_yaml_loader.py
 
-# curl -X GET "http://localhost:5000/tainted7/touch%20HELLO"
-@app.route("/tainted7/<something>")
-def test_sources_7(something):
-    
-    os.system(request.remote_addr) 
+import yaml
 
-    return "foo"
+def unsafe_load_user_input():
+    print("Paste YAML content:")
+    user_input = input()
+
+    # ❌ Vulnerable: Using unsafe yaml.load() instead of safe_load()
+    data = yaml.load(user_input, Loader=yaml.Loader)
+
+    print("Parsed data:")
+    print(data)
 
 if __name__ == "__main__":
-	app.run(debug=True) 
+    unsafe_load_user_input()
