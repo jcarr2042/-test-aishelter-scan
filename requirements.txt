@@ -6,6 +6,7 @@ django==2.1.5
 jinja2==2.10
 flask==0.12
 sqlalchemy==1.2.18 
+numpy==1.16.0
 
 
 AWS_KEY=AKIAIOSFODNN7EXAMPLE
