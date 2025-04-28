@@ -1,6 +1,8 @@
 urllib3==1.23
 requests==2.19.1
 pillow==6.2.1
+cryptography==2.8
+
 
 
 AWS_KEY=AKIAIOSFODNN7EXAMPLE
