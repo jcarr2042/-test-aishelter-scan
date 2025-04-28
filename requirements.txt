@@ -9,6 +9,6 @@ sqlalchemy==1.2.18
 numpy==1.16.0  
 tensorflow==2.2.0
 markdown==2.6.8 
-
+django-rest-framework==3.9.3
 
 AWS_KEY=AKIAIOSFODNN7EXAMPLE
