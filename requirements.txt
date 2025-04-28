@@ -12,6 +12,6 @@ markdown==2.6.8
 django-rest-framework==3.9.3
 werkzeug==0.14.1 
 django-rest-framework==3.9.3
-
+flask-cors==3.0.7
 
 AWS_KEY=AKIAIOSFODNN7EXAMPLE
